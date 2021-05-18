@@ -2,6 +2,7 @@ package com.example.multimedialne;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
@@ -41,16 +42,15 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.drawable.valley_mini);
         images.add(R.drawable.valley_mini);
         images.add(R.drawable.valley_mini);
-        images.add(R.drawable.valley_mini);
-        images.add(R.drawable.valley_mini);
-        images.add(R.drawable.valley_mini);
-        images.add(R.drawable.valley_mini);
 
         adapter = new Adapter(this, images);
 
         GridLayoutManager manager = new GridLayoutManager(this,  2, GridLayoutManager.VERTICAL, false);
-        cards.setLayoutManager(manager);
+//        cards.setLayoutManager(manager);
+        cards.setLayoutManager(new LinearLayoutManager(this));
         cards.setAdapter(adapter);
+        SnapHelper helper = new LinearSnapHelper();
+        helper.attachToRecyclerView(cards);
     }
 
     public void loadImageActivity(View view) {

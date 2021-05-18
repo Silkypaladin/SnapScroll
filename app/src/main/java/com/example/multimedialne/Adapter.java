@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,7 +33,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.gridIcon.setImageResource(images.get(position));
+        holder.gridIcon2.setImageResource(images.get(position));
         holder.gridIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SecondActivity.class);
+                intent.putExtra("imgName", images.get(position));
+                v.getContext().startActivity(intent);
+            }
+        });
+        holder.gridIcon2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SecondActivity.class);
@@ -52,10 +59,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView gridIcon;
+        ImageView gridIcon2;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            gridIcon = itemView.findViewById(R.id.icon);
+            gridIcon = itemView.findViewById(R.id.icon2);
+            gridIcon2 = itemView.findViewById(R.id.icon);
         }
     }
 }
